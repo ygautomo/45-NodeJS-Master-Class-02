@@ -32,6 +32,8 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 04-parsingrequestpaths.js
+
+// Test HTTP Server with routing path
 // http://{{IP_ADDRESS}}:3000/path
-// Postman GET (http://{{IP_ADDRESS}}:3000/path)
+// Postman GET (http://{{IP_ADDRESS}}:3000/path)		// Postman 04-parsingrequestpaths
 // curl http://{{IP_ADDRESS}}:3000/path

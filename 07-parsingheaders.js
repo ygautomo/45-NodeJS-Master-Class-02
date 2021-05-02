@@ -42,8 +42,10 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 07-parsingheaders.js
+
+// Test HTTP Server with http methods, header, routing path and querystring
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)		// Postman 07-parsingheaders
 
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \

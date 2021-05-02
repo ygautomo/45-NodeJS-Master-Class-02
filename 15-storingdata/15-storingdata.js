@@ -16,12 +16,12 @@ const StringDecoder = require('string_decoder').StringDecoder;
 // TESTING
 // @TODO delete this
 // 01 Test create the data
-// _data.create('test', 'newFile', {'foo' : 'bar'}, function (err){
+// _data.create('test', 'newFile', {'foo' : 'bar'}, function(err){
 // 	console.log('this was the error', err);
 // });
 
 // 02 Test create the data while file does exist
-// _data.create('test', 'newFile', {'foo' : 'bar'}, function (err){
+// _data.create('test', 'newFile', {'foo' : 'bar'}, function(err){
 // 	console.log('this was the error', err);
 // });
 
@@ -36,22 +36,22 @@ const StringDecoder = require('string_decoder').StringDecoder;
 // });
 
 // 05 Test update the data while file does exist
-// _data.update('test', 'newFile', {'fizz' : 'buzz'}, function (err){
+// _data.update('test', 'newFile', {'fizz' : 'buzz'}, function(err){
 // 	console.log('this was the error', err);
 // });
 
 // 06 Test update the data while file doesn't exist
-// _data.update('test', 'newFile1', {'fizz' : 'buzz'}, function (err){
+// _data.update('test', 'newFile1', {'fizz' : 'buzz'}, function(err){
 // 	console.log('this was the error', err);
 // });
 
 // 07 Test delete the data while file does exist
-// _data.delete('test', 'newFile', function (err){
+// _data.delete('test', 'newFile', function(err){
 // 	console.log('this was the error', err);
 // });
 
 // 08 Test delete the data while file doesn't exist
-// _data.delete('test', 'newFile1', function (err){
+// _data.delete('test', 'newFile1', function(err){
 // 	console.log('this was the error', err);
 // });
 
@@ -176,4 +176,5 @@ let router = {
 // cd ./Apps 03 -- RESTful API
 // NODE_ENV=staging node 15-storingdata.js
 // NODE_ENV=production node 15-storingdata.js
+
 // TESTING MODULE

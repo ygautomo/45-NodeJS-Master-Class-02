@@ -105,17 +105,17 @@ let router = {
 // NODE_ENV=staging node 11-addingconfiguration.js
 // NODE_ENV=production node 11-addingconfiguration.js
 
-// Test HTTP Server on port 3000 and set routing 'path'
+// Test HTTP Server on port 3000 with http methods, header, set routing 'path', querystring and payload
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)			// Postman 11-addingconfiguration
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
 //	-d "This is the body we are sending." \
 //	"http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 
-// Test HTTP Server on port 5000 and set routing 'sample'
+// Test HTTP Server on port 3000 with http methods, header, set routing 'sample', querystring and payload
 // http://{{IP_ADDRESS}}:5000/sample?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:5000/sample?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:5000/sample?month=March&year=2021)		// Postman 11-addingconfiguration
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
 //	-d "This is the body we are sending." \

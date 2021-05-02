@@ -134,15 +134,17 @@ let router = {
 // NODE_ENV=staging node 13-serviceping.js
 // NODE_ENV=production node 13-serviceping.js
 
-// Test HTTP Server on port 3000 and set routing 'path'
+// Test HTTP Server on port 3000 with http methods, header none, set routing 'path', querystring and payload none
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)			// Postman 13-serviceping
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
 //	-d "This is the body we are sending." \
 //	"http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 
-// Test HTTPS Server on port 3001 and set routing 'ping'
+// Test HTTPS Server on port 3001 with http methods, header none, set routing 'ping', querystring and payload none
+// https://{{IP_ADDRESS}}:3001/ping?month=March&year=2021
+// Postman POST (https://{{IP_ADDRESS}}:3001/ping?month=March&year=2021)		// Postman 13-serviceping
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 // -k --cacert ca-bundle.crt \
 // -H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
@@ -154,9 +156,9 @@ let router = {
 // -d "This is the body we are sending." \
 // "https://{{IP_ADDRESS}}:3001/ping?month=March&year=2021"
 
-// Test HTTP Server on port 5000 and set routing 'ping'
+// Test HTTP Server on port 5000 with http methods, header none, set routing 'ping', querystring and payload none
 // http://{{IP_ADDRESS}}:5000/ping?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:5000/ping?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:5000/ping?month=March&year=2021)			// Postman 13-serviceping
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
 //	-d "This is the body we are sending." \

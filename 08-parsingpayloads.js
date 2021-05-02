@@ -55,8 +55,10 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 08-parsingpayloads.js
+
+// Test HTTP Server with http methods, header, routing path, querystring and payload
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)		// Postman 08-parsingpayloads
 
 // curl [-X POST/PUT] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \

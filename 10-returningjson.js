@@ -103,17 +103,17 @@ let router = {
 // cd ./Apps 03 -- RESTful API
 // node 10-returningjson.js
 
-// Test HTTP Server and set routing 'path'
+// Test HTTP Server with http methods, header, set routing 'path', querystring and payload
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)			// Postman 10-returningjson
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
 //	-d "This is the body we are sending." \
 //	"http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 
-// Test HTTP Server and set routing 'sample'
+// Test HTTP Server with http methods, header, set routing 'sample', querystring and payload
 // http://{{IP_ADDRESS}}:3000/sample?month=March&year=2021
-// Postman POST (http://{{IP_ADDRESS}}:3000/sample?month=March&year=2021)
+// Postman POST (http://{{IP_ADDRESS}}:3000/sample?month=March&year=2021)		// Postman 10-returningjson
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
 //	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
 //	-d "This is the body we are sending." \

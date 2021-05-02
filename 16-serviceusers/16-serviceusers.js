@@ -118,12 +118,14 @@ let router = {
 // NODE_ENV=production node 16-serviceusers.js
 
 // Test HTTP Server
-// http://{{IP_ADDRESS}}:3000/users
-// Postman POST (http://{{IP_ADDRESS}}:3000/users)
-// curl -X POST 'http://{{IP_ADDRESS}}:3000/users'
+// Test HTTP Server on port 3000 with http methods GET, header none, set routing 'ping', querystring none and payload none
+// http://{{IP_ADDRESS}}:3000/ping
+// Postman POST (http://{{IP_ADDRESS}}:3000/ping)						// Postman 16-serviceusers ping
+// curl -X POST 'http://{{IP_ADDRESS}}:3000/ping'
 
-// Test HTTP Server and create new user with body phone doesn't exist (new)
-// Postman POST (http://{{IP_ADDRESS}}:3000/users) with body
+// Test HTTP Server and create new user with payload valid (new) phone
+// Test HTTP Server on port 3000 with http methods POST, header none, set routing 'users', querystring none and payload valid (new) phone
+// Postman POST (http://{{IP_ADDRESS}}:3000/users)						// Postman 16-serviceusers post users
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/users' \
 // --header 'Content-Type: application/json' \
 // --data-raw '{
@@ -134,12 +136,14 @@ let router = {
 //		"tosAgreement" : true
 // }'
 
-// Test HTTP Server and read user with querystring phone does exists
-// Postman GET (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)
+// Test HTTP Server and read user with querystring valid (existing) phone
+// Test HTTP Server on port 3000 with http methods GET, header none, set routing 'users', querystring valid (existing) phone and payload none
+// Postman GET (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)		// Postman 16-serviceusers get users
 // curl -X GET 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560'
 
-// Test HTTP Server and update user that phone does exists
-// Postman PUT (http://{{IP_ADDRESS}}:3000/users) with body
+// Test HTTP Server and update user with payload valid (existing) phone
+// Test HTTP Server on port 3000 with http methods PUT, header none, set routing 'users', querystring none and payload valid (existing) phone & updated fields
+// Postman PUT (http://{{IP_ADDRESS}}:3000/users)						// Postman 16-serviceusers put users
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/users' \
 // --header 'Content-Type: application/json' \
 // --data-raw '{
@@ -147,6 +151,7 @@ let router = {
 //     "phone" : "5551234560"
 // }'
 
-// Test HTTP Server and delete user with querystring phone does exists
-// Postman DEL (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)
+// Test HTTP Server and delete user with querystring valid (existing) phone
+// Test HTTP Server on port 3000 with http methods DEL, header none, set routing 'users', querystring valid (existing) phone and payload none
+// Postman DEL (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)		// Postman 16-serviceusers del users
 // curl -X DELETE 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560'

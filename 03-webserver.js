@@ -20,6 +20,8 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 03-webserver.js
+
+// Test HTTP Server
 // http://{{IP_ADDRESS}}:3000
-// Postman GET (http://{{IP_ADDRESS}}:3000)
+// Postman GET (http://{{IP_ADDRESS}}:3000)		// Postman 03-webserver
 // curl [-X GET] http://{{IP_ADDRESS}}:3000

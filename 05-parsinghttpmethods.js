@@ -35,6 +35,8 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 05-parsinghttpmethods.js
+
+// Test HTTP Server with http methods and routing path
 // http://{{IP_ADDRESS}}:3000/path
-// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path)
+// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path)		// Postman 05-parsinghttpmethods
 // curl [-X POST/GET/PUT/PATCH/DELETE] http://{{IP_ADDRESS}}:3000/path

@@ -38,8 +38,10 @@ server.listen(3000, function(){
 // Running command
 // cd ./Apps 03 -- RESTful API
 // node 06-parsingquerystrings.js
+
+// Test HTTP Server with http methods, routing path and querystring
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
-// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)
+// Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)		// Postman 06-parsingquerystrings
 // curl [-X POST/GET/PUT/PATCH/DELETE] "http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 // Reff: https://stackoverflow.com/questions/9100099/why-is-curl-truncating-this-query-string
 // Reff: https://stackoverflow.com/questions/56008469/i-am-new-in-programming-i-am-learning-node-js-but-while-doing-parsedurl-i-am-ge
