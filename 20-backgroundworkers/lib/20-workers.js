@@ -187,7 +187,8 @@ workers.alertUserToStatusChanges = function(newCheckData){
 workers.loop = function(){
 	setInterval(function(){
 		workers.gatheringAllChecks();
-	}, 1000 * 60);
+	// }, 1000 * 5);	// testing code
+	}, 1000 * 60);		// production code
 };
 
 // Init script

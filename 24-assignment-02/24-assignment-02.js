@@ -37,9 +37,10 @@ module.exports = app;
 // NODE_DEBUG=server node 24-assignment-02.js
 
 // Test HTTP Server
-// http://{{IP_ADDRESS}}:3000/users
-// Postman GET (http://{{IP_ADDRESS}}:3000/users)
-// curl -X GET 'http://{{IP_ADDRESS}}:3000/users'
+// Test HTTP Server on port 3000 with http methods POST, header none, set routing 'carts', querystring none and payload none
+// http://{{IP_ADDRESS}}:3000/carts
+// Postman POST (http://{{IP_ADDRESS}}:3000/carts)							// Postman 24-assignment carts
+// curl -X POST 'http://{{IP_ADDRESS}}:3000/carts'
 
 // TESTING MODULE
 // 01 Create new user

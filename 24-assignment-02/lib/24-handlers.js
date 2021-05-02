@@ -13,23 +13,23 @@ const helpers = require('./24-helpers');
 // Define the handlers
 let handlers = {};
 
-// Define checks handlers
-handlers.checks = function(data, callback){
+// Define carts handlers
+handlers.carts = function(data, callback){
 	let acceptableMethods = ['post', 'get', 'put', 'delete'];
 	if(acceptableMethods.indexOf(data.method) > -1){
-		handlers._checks[data.method](data, callback);
+		handlers._carts[data.method](data, callback);
 	} else {
 		callback(405);
 	}
 };
 
-// Container for all the checks submethods
-handlers._checks = {};
+// Container for all the carts submethods
+handlers._carts = {};
 
-// Checks - post
+// Carts - post
 // Required data: protocol, url, method, successCodes, timeoutSeconds
 // Optional data: none
-handlers._checks.post = function(data, callback){
+handlers._carts.post = function(data, callback){
 	// Validate inputs
 	let protocol = typeof(data.payload.protocol) == 'string' && ['http', 'https'].indexOf(data.payload.protocol.trim()) > -1 ? data.payload.protocol.trim() : false;
 	let url = typeof(data.payload.url) == 'string' && data.payload.url.trim().length > 0 ? data.payload.url.trim() : false;
@@ -49,9 +49,9 @@ handlers._checks.post = function(data, callback){
 				// Lookup the user data
 				_data.read('users', userPhone, function(err, userData){
 					if(!err && userData){
-						let userChecks = typeof(userData.checks) == 'object' && userData.checks instanceof Array ? userData.checks : [];
-						// Verify that the user has less than the number of max-checks-per-user
-						if(userChecks.length < config.maxChecks){
+						let userCarts = typeof(userData.carts) == 'object' && userData.carts instanceof Array ? userData.carts : [];
+						// Verify that the user has less than the number of max-carts-per-user
+						if(userCarts.length < config.maxCarts){
 							// Create a random id for the check
 							let checkId = helpers.createRandomString(20);
 
@@ -67,11 +67,11 @@ handlers._checks.post = function(data, callback){
 							};
 
 							// Save the object
-							_data.create('checks', checkId, checkObject, function(err){
+							_data.create('carts', checkId, checkObject, function(err){
 								if(!err){
 									// Add the check id to the user's object
-									userData.checks = userChecks;
-									userData.checks.push(checkId);
+									userData.carts = userCarts;
+									userData.carts.push(checkId);
 
 									// Save the new user data
 									_data.update('users', userPhone, userData, function(err){
@@ -86,7 +86,7 @@ handlers._checks.post = function(data, callback){
 								}
 							});
 						} else {
-							callback(400, {'Error' : 'The user already has the maximum number of checks ('+config.maxChecks+')'});
+							callback(400, {'Error' : 'The user already has the maximum number of carts ('+config.maxCarts+')'});
 						}
 					} else {
 						callback(403);
@@ -101,15 +101,16 @@ handlers._checks.post = function(data, callback){
 	}
 };
 
-// Checks - get
+// Carts - get
 // Required data: id
 // Optional data: none
-handlers._checks.get = function(data, callback){
+handlers._carts.get = function(data, callback){
+	console.log("Bebek");
 	// Check that the id is valid
 	let id = typeof(data.queryStringObject.id) == 'string' && data.queryStringObject.id.trim().length == 20 ? data.queryStringObject.id.trim() : false;
 	if(id){
 		// Lookup the check
-		_data.read('checks', id, function(err, checkData){
+		_data.read('carts', id, function(err, checkData){
 			if(!err && checkData){
 				// Get the token from the headers
 				let token = typeof(data.headers.token) == 'string' && data.headers.token.trim().length == 20 ? data.headers.token.trim() : false;
@@ -133,10 +134,10 @@ handlers._checks.get = function(data, callback){
 	}
 };
 
-// Checks - put
+// Carts - put
 // Required data: id
 // Required data: protocol, url, method, successCodes, timeoutSeconds (one must be sent)
-handlers._checks.put = function(data, callback){
+handlers._carts.put = function(data, callback){
 	// Check the required fields
 	let id = typeof(data.payload.id) == 'string' && data.payload.id.trim().length == 20 ? data.payload.id.trim() : false;
 
@@ -150,7 +151,7 @@ handlers._checks.put = function(data, callback){
 	if(id){
 		// Check to make sure one or more optional fields has been sent
 		if(protocol || url || method || successCodes || timeoutSeconds){
-			_data.read('checks', id, function(err, checkData){
+			_data.read('carts', id, function(err, checkData){
 				if(!err && checkData){
 					// Get the token from the headers
 					let token = typeof(data.headers.token) == 'string' && data.headers.token.trim().length == 20 ? data.headers.token.trim() : false;
@@ -176,7 +177,7 @@ handlers._checks.put = function(data, callback){
 							}
 
 							// Store the new updates
-							_data.update('checks', id, checkData, function(err){
+							_data.update('carts', id, checkData, function(err){
 								if(!err){
 									callback(200);
 								} else {
@@ -199,15 +200,15 @@ handlers._checks.put = function(data, callback){
 	}
 };
 
-// Checks - delete
+// Carts - delete
 // Required data: id
 // Optional data: none
-handlers._checks.delete = function(data, callback){
+handlers._carts.delete = function(data, callback){
 	// Check that the id is valid
 	let id = typeof(data.queryStringObject.id) == 'string' && data.queryStringObject.id.trim().length == 20 ? data.queryStringObject.id.trim() : false;
 	if(id){
 		// Lookup the check
-		_data.read('checks', id, function(err,checkData){
+		_data.read('carts', id, function(err,checkData){
 			if(!err && checkData){
 				// Get the token from the headers
 				let token = typeof(data.headers.token) == 'string' && data.headers.token.trim().length == 20 ? data.headers.token.trim() : false;
@@ -216,18 +217,18 @@ handlers._checks.delete = function(data, callback){
 				handlers._tokens.verifyToken(token, checkData.userPhone, function(tokenIsValid){
 					if(tokenIsValid){
 						// Delete the check data
-						_data.delete('checks', id, function(err){
+						_data.delete('carts', id, function(err){
 							if(!err){
 								// Lookup the user
 								_data.read('users', checkData.userPhone, function(err, userData){
 									if(!err && userData){
-										let userChecks = typeof(userData.checks) == 'object' && userData.checks instanceof Array ? userData.checks : [];
+										let userCarts = typeof(userData.carts) == 'object' && userData.carts instanceof Array ? userData.carts : [];
 
-										// Remove the delete check from their list of checks
-										let checkPosition = userChecks.indexOf(id);
+										// Remove the delete check from their list of carts
+										let checkPosition = userCarts.indexOf(id);
 
 										if(checkPosition > -1){
-											userChecks.splice(checkPosition, 1);
+											userCarts.splice(checkPosition, 1);
 
 											// Re-save the user's data
 											_data.update('users', checkData.userPhone, userData, function(err){
@@ -620,26 +621,26 @@ handlers._users.delete = function(data, callback){
 					if(!err && data){
 						_data.delete('users', email, function(err){
 							if(!err){
-								// Delete each of the checks associated with the user
-								let userChecks = typeof(userData.checks) == 'object' && userData.checks instanceof Array ? userData.checks : [];
-								let checksToDelete = userChecks.length;
-								if(checksToDelete > 0){
-									let checksDeleted = 0;
+								// Delete each of the carts associated with the user
+								let userCarts = typeof(userData.carts) == 'object' && userData.carts instanceof Array ? userData.carts : [];
+								let cartsToDelete = userCarts.length;
+								if(cartsToDelete > 0){
+									let cartsDeleted = 0;
 									let deletionErrors = false;
 
-									// Loop through the checks
-									userChecks.forEach(function(checkId){
+									// Loop through the carts
+									userCarts.forEach(function(checkId){
 										// Delete the check
-										_data.delete('checks', checkId, function(err){
+										_data.delete('carts', checkId, function(err){
 											if(err){
 												deletionErrors = true;
 											}
-											checksDeleted++;
-											if(checksDeleted == checksToDelete){
+											cartsDeleted++;
+											if(cartsDeleted == cartsToDelete){
 												if(!deletionErrors){
 													callback(200);
 												} else {
-													callback(500, {'Error' : 'Error encountered while attempting to delete all of the user\'s checks. All checks may not have been deleted from the ssytem successfully'});
+													callback(500, {'Error' : 'Error encountered while attempting to delete all of the user\'s carts. All carts may not have been deleted from the ssytem successfully'});
 												}
 											}
 										});

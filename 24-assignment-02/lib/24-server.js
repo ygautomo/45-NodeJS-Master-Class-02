@@ -118,7 +118,7 @@ server.unifiedServer = function (req, res){
 
 // Define a request router
 server.router = {
-	'checks' : handlers.checks,
+	'carts' : handlers.carts,
 	'ping' : handlers.ping,
 	'sample' : handlers.sample,
 	'tokens' : handlers.tokens,

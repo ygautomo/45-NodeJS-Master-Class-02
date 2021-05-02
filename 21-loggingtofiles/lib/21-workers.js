@@ -220,7 +220,8 @@ workers.log = function(originalCheckData, checkOutcome, state, alertWarranted, t
 workers.loop = function(){
 	setInterval(function(){
 		workers.gatheringAllChecks();
-	}, 1000 * 60);	// change 60 to 5 for testing
+	// }, 1000 * 5);	// testing code
+	}, 1000 * 60);		// production code
 };
 
 // Rotate (compress) the log files
