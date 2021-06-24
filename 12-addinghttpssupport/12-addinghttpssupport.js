@@ -139,15 +139,15 @@ let router = {
 // https://{{IP_ADDRESS}}:3001/sample?month=March&year=2021
 // Postman POST (http://{{IP_ADDRESS}}:3001/sample?month=March&year=2021)		// Postman 12-addinghttpssupport
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
-// -k --cacert ca-bundle.crt \
-// -H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
-// -d "This is the body we are sending." \
-// "https://{{IP_ADDRESS}}:3001/sample?month=March&year=2021"
+//	-k --cacert ca-bundle.crt \
+//	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
+//	-d "This is the body we are sending." \
+//	"https://{{IP_ADDRESS}}:3001/sample?month=March&year=2021"
 // curl [-X POST/GET/PUT/PATCH/DELETE] \
-// --insecure --cacert ca-bundle.crt \
-// --header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
-// -d "This is the body we are sending." \
-// "https://{{IP_ADDRESS}}:3001/sample?month=March&year=2021"
+//	--insecure --cacert ca-bundle.crt \
+//	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
+//	-d "This is the body we are sending." \
+//	"https://{{IP_ADDRESS}}:3001/sample?month=March&year=2021"
 // return {'name' : 'sample handler'}
 
 // Test HTTP Server on port 5000 with http methods, header, set routing 'sample', querystring and payload

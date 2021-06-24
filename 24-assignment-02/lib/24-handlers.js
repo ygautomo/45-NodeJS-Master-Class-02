@@ -27,12 +27,14 @@ handlers.carts = function(data, callback){
 handlers._carts = {};
 
 // Carts - post
-// Required data: protocol, url, method, successCodes, timeoutSeconds
+// Required data: pizza, qty, unitPrice, subtotalPrice
 // Optional data: none
 handlers._carts.post = function(data, callback){
 	// Validate inputs
-	let protocol = typeof(data.payload.protocol) == 'string' && ['http', 'https'].indexOf(data.payload.protocol.trim()) > -1 ? data.payload.protocol.trim() : false;
-	let url = typeof(data.payload.url) == 'string' && data.payload.url.trim().length > 0 ? data.payload.url.trim() : false;
+	let pizza = typeof(data.payload.pizza) == 'string' && 
+		['pizza pepperoni', 'pizza cheese lovers', 'pizza super supreme', 'pizza meat lovers', 'pizza american favourite'].indexOf(data.payload.pizza.trim()) > -1 ? 
+		data.payload.pizza.trim() : false;
+	let qty = typeof(data.payload.url) == 'string' && data.payload.url.trim().length > 0 ? data.payload.url.trim() : false;
 	let method = typeof(data.payload.method) == 'string' && ['post', 'get', 'put', 'delete'].indexOf(data.payload.method.trim()) > -1 ? data.payload.method.trim() : false;
 	let successCodes = typeof(data.payload.successCodes) == 'object' && data.payload.successCodes instanceof Array && data.payload.successCodes.length > 0 ? data.payload.successCodes : false;
 	let timeoutSeconds = typeof(data.payload.timeoutSeconds) == 'number' && data.payload.timeoutSeconds % 1 === 0 && data.payload.timeoutSeconds >= 1 && data.payload.timeoutSeconds <= 5 ? data.payload.timeoutSeconds : false;
@@ -105,7 +107,6 @@ handlers._carts.post = function(data, callback){
 // Required data: id
 // Optional data: none
 handlers._carts.get = function(data, callback){
-	console.log("Bebek");
 	// Check that the id is valid
 	let id = typeof(data.queryStringObject.id) == 'string' && data.queryStringObject.id.trim().length == 20 ? data.queryStringObject.id.trim() : false;
 	if(id){
@@ -262,6 +263,41 @@ handlers._carts.delete = function(data, callback){
 	}
 };
 
+// Define menu handlers
+// Menu - get
+// Required data: email
+// Optional data: none
+handlers.menus = function(data, callback){
+	if(data.method == 'get'){
+		// Check that the email is valid
+		let email = typeof(data.queryStringObject.email) == 'string' && data.queryStringObject.email.trim().length > 0 && data.queryStringObject.email.trim().includes('@')? data.queryStringObject.email.trim() : false;
+		if(email){
+			// Get the token from the headers
+			let token = typeof(data.headers.token) == 'string' && data.headers.token.trim().length == 20 ? data.headers.token.trim() : false;
+
+			// Verify that the given token is valid for the phone number
+			handlers._tokens.verifyToken(token, email, function(tokenIsValid){
+				if(tokenIsValid){
+					// Lookup the menu
+					_data.read('menus', 'menu', function(err, dataMenu){
+						if(!err && dataMenu){
+							callback(200, dataMenu);
+						} else {
+							callback(500, {'Error' : 'Couldn\'t retrieving menu'});
+						} 
+					});
+				} else {
+					callback(403, {'Error' : 'Missing required token in header, or token is invalid'});
+				}
+			});
+		} else {
+			callback(400, {'Error' : 'Missing required field(s)'});
+		}
+	} else {
+		callback(405);
+	}
+};
+
 // Define ping handlers
 handlers.ping = function(data, callback){
 	// Callback a http status code
@@ -288,15 +324,16 @@ handlers.tokens = function(data, callback){
 handlers._tokens = {};
 
 // Tokens - post
-// Required data: phone, password
+// Required data: email, password
 // Optional data: none
 handlers._tokens.post = function(data, callback){
-	let phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
+	// let phone = typeof(data.payload.phone) == 'string' && data.payload.phone.trim().length == 10 ? data.payload.phone.trim() : false;
+	let email = typeof(data.payload.email) == 'string' && data.payload.email.trim().length > 0 && data.payload.email.trim().includes('@') ? data.payload.email.trim() : false;
 	let password = typeof(data.payload.password) == 'string' && data.payload.password.trim().length > 0 ? data.payload.password.trim() : false;
 
-	if(phone && password){
+	if(email && password){
 		// Lookup the user who matches that phone number
-		_data.read('users', phone, function(err, userData){
+		_data.read('users', email, function(err, userData){
 			if(!err && userData){
 				// Hash the sent password and compare it to the password stored in the user object
 				let hashedPassword = helpers.hash(password);
@@ -305,7 +342,7 @@ handlers._tokens.post = function(data, callback){
 					let tokenId = helpers.createRandomString(20);
 					let expires = Date.now() + 1000 * 60 * 60;
 					let tokenObject = {
-						'phone' : phone,
+						'email' : email,
 						'id' : tokenId,
 						'expires' : expires
 					};
@@ -413,12 +450,12 @@ handlers._tokens.delete = function(data, callback){
 };
 
 // Verify if a given token id is currently valid for a given user
-handlers._tokens.verifyToken = function(id, phone, callback){
+handlers._tokens.verifyToken = function(id, email, callback){
 	// Lookup the token
 	_data.read('tokens', id, function(err, tokenData){
 		if(!err && tokenData){
 			// Check that the token is for the given user and not expired
-			if(tokenData.phone == phone && tokenData.expires > Date.now()){
+			if(tokenData.email == email && tokenData.expires > Date.now()){
 				callback(true);
 			} else {
 				callback(false);
@@ -500,10 +537,10 @@ handlers._users.post = function(data, callback){
 // Optional data: none
 // @TODO Only let authenticated user access their object. Don't let them access anyone else's
 handlers._users.get = function(data, callback){
-	// Check that the phone number is valid
+	// Check that the email is valid
 	// let phone = typeof(data.queryStringObject.phone) == 'string' && data.queryStringObject.phone.trim().length == 10 ? data.queryStringObject.phone.trim() : false;
-	let email = typeof(data.queryStringObject.emali) == 'string' && data.queryStringObject.email.trim().length > 10 && data.payload.email.trim().includes('@')? data.queryStringObject.email.trim() : false;
-	if(phone){
+	let email = typeof(data.queryStringObject.email) == 'string' && data.queryStringObject.email.trim().length > 0 && data.queryStringObject.email.trim().includes('@')? data.queryStringObject.email.trim() : false;
+	if(email){
 		// Get the token from the headers
 		let token = typeof(data.headers.token) == 'string' && data.headers.token.trim().length == 20 ? data.headers.token.trim() : false;
 

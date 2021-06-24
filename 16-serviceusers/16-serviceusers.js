@@ -127,14 +127,14 @@ let router = {
 // Test HTTP Server on port 3000 with http methods POST, header none, set routing 'users', querystring none and payload valid (new) phone
 // Postman POST (http://{{IP_ADDRESS}}:3000/users)						// Postman 16-serviceusers post users
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/users' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
 //		"firstName" : "John",
 //		"lastName" : "Smith",
 //		"phone" : "5551234560",
 //		"password" : "ThisIsAPassword",
 //		"tosAgreement" : true
-// }'
+//	}'
 
 // Test HTTP Server and read user with querystring valid (existing) phone
 // Test HTTP Server on port 3000 with http methods GET, header none, set routing 'users', querystring valid (existing) phone and payload none
@@ -145,13 +145,13 @@ let router = {
 // Test HTTP Server on port 3000 with http methods PUT, header none, set routing 'users', querystring none and payload valid (existing) phone & updated fields
 // Postman PUT (http://{{IP_ADDRESS}}:3000/users)						// Postman 16-serviceusers put users
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/users' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "firstName" : "Jim",
-//     "phone" : "5551234560"
-// }'
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"firstName" : "Jim",
+//		"phone" : "5551234560"
+//	}'
 
 // Test HTTP Server and delete user with querystring valid (existing) phone
 // Test HTTP Server on port 3000 with http methods DEL, header none, set routing 'users', querystring valid (existing) phone and payload none
 // Postman DEL (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)		// Postman 16-serviceusers del users
-// curl -X DELETE 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560'
+//	curl -X DELETE 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560'

@@ -128,24 +128,24 @@ let router = {
 // Test HTTP Server on port 3000 with http methods POST, header none, set routing 'users', querystring none and payload valid (new) phone
 // Postman POST (http://{{IP_ADDRESS}}:3000/users)							// Postman 17-servicetokens post users
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/users' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
 //		"firstName" : "John",
 //		"lastName" : "Smith",
 //		"phone" : "5551234560",
 //		"password" : "ThisIsAPassword",
 //		"tosAgreement" : true
-// }'
+//	}'
 
 // Test HTTP Server and create new token with payload valid (existing) phone & valid password
 // Test HTTP Server on port 3000 with http methods POST, header none, set routing 'tokens', querystring none and payload valid (existing) phone & valid password
 // Postman POST (http://{{IP_ADDRESS}}:3000/tokens)							// Postman 17-servicetokens post tokens
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/tokens' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "phone" : "5551234560",
-//     "password" : "ThisIsAPassword"
-// }'
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"phone" : "5551234560",
+//		"password" : "ThisIsAPassword"
+//	}'
 
 // Test HTTP Server and read token with querystring valid (existing) token id
 // Test HTTP Server on port 3000 with http methods GET, header none, set routing 'tokens', querystring valid (existing) token id and payload none
@@ -156,28 +156,28 @@ let router = {
 // Test HTTP Server on port 3000 with http methods GET, header valid (existing & not-expired) token id, set routing 'users', querystring valid (existing) phone and payload none
 // Postman GET http://{{IP_ADDRESS}}:3000/users?phone=5551234560			// Postman 17-servicetokens get users
 // curl -X GET 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560' \
-// --header 'token: lpz9bew8qo3y6pxpqeol'
+//	--header 'token: lpz9bew8qo3y6pxpqeol'
 
 // Test HTTP Server and update token with payload valid (existing & not-expired) token id
 // Test HTTP Server on port 3000 with http methods PUT, header none, set routing 'tokens', querystring none and payload valid (existing & not-expired) token id & update fields
 // Postman PUT (http://{{IP_ADDRESS}}:3000/tokens)							// Postman 17-servicetokens put tokens
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/tokens' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "id" : "lpz9bew8qo3y6pxpqeol",
-//     "extend" : true
-// }'
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"id" : "lpz9bew8qo3y6pxpqeol",
+//		"extend" : true
+//	}'
 
 // Test HTTP Server and update user with header valid (existing & not-expired) token id and payload valid (existing) phone & updated fields
 // Test HTTP Server on port 3000 with http methods PUT, header valid (existing & not-expired) token id, set routing 'users', querystring none and payload valid (existing) phone & updated fields
 // Postman PUT http://{{IP_ADDRESS}}:3000/users								// Postman 17-servicetokens put users
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/users' \
-// --header 'token: 96auh4py0ed9l1uwgrxq' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "firstName": "John",
-//     "phone": "5551234560"
-// }'
+//	--header 'token: 96auh4py0ed9l1uwgrxq' \
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"firstName": "John",
+//		"phone": "5551234560"
+//	}'
 
 // Test HTTP Server and delete token with querystring valid (existing) token id
 // Test HTTP Server on port 3000 with http methods DEL, header none, set routing 'tokens', querystring valid (existing) token id and payload none
@@ -188,4 +188,4 @@ let router = {
 // Test HTTP Server on port 3000 with http methods DEL, header valid (existing & not-expired) token id, set routing 'users', querystring valid (existing) phone and payload none
 // Postman DEL (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)			// Postman 17-servicetokens del users
 // curl -X DELETE 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560' \
-// --header 'token: q96gn9butftilibcfe07'
+//	--header 'token: q96gn9butftilibcfe07'

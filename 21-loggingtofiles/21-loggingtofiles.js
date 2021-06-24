@@ -41,54 +41,54 @@ module.exports = app;
 // Test HTTP Server on port 3000 with http methods POST, header none, set routing 'users', querystring none and payload valid (new) phone
 // Postman POST (http://{{IP_ADDRESS}}:3000/users)							// Postman 21-loggingtofiles post users
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/users' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
 //		"firstName" : "John",
 //		"lastName" : "Smith",
 //		"phone" : "5551234560",
 //		"password" : "ThisIsAPassword",
 //		"tosAgreement" : true
-// }'
+//	}'
 
 // Test HTTP Server and create new token with payload valid (existing) phone & valid password
 // Test HTTP Server on port 3000 with http methods POST, header none, set routing 'tokens', querystring none and payload valid (existing) phone & valid password
 // Postman POST (http://{{IP_ADDRESS}}:3000/tokens)							// Postman 21-loggingtofiles post tokens
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/tokens' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "phone" : "5551234560",
-//     "password" : "ThisIsAPassword"
-// }'
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"phone" : "5551234560",
+//		"password" : "ThisIsAPassword"
+//	}'
 
 // Create check 01 -- google.com
 // Test HTTP Server and create new check with header valid (existing & not-expired) token id and payload valid (all) check fields
 // Test HTTP Server on port 3000 with http methods POST, header valid (existing & not-expired) token id, set routing 'checks', querystring none and payload valid (all) check fields
 // Postman POST (http://{{IP_ADDRESS}}:3000/checks)							// Postman 21-loggingtofiles post checks 01
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/checks' \
-// --header 'token: i81bfwiyyms8andvomql' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "protocol" : "http",
-//     "url" : "google.com",
-//     "method" : "get",
-//     "successCodes" : [200, 201, 301, 302],
-//     "timeoutSeconds" : 3
-// }'
+//	--header 'token: i81bfwiyyms8andvomql' \
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"protocol" : "http",
+//		"url" : "google.com",
+//		"method" : "get",
+//		"successCodes" : [200, 201, 301, 302],
+//		"timeoutSeconds" : 3
+//	}'
 
 // Create check 02 -- yahoo.com
 // Test HTTP Server and create new check with header valid (existing & not-expired) token id and payload valid (all) check fields
 // Test HTTP Server on port 3000 with http methods POST, header valid (existing & not-expired) token id, set routing 'checks', querystring none and payload valid (all) check fields
 // Postman POST (http://{{IP_ADDRESS}}:3000/checks)							// Postman 21-loggingtofiles post checks 02
 // curl -X POST 'http://{{IP_ADDRESS}}:3000/checks' \
-// --header 'token: i81bfwiyyms8andvomql' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "protocol" : "http",
-//     "url" : "yahoo.com",
-//     "method" : "get",
-//     "successCodes" : [200, 201, 301, 302],
-//     "timeoutSeconds" : 3
-// }'
+//	--header 'token: i81bfwiyyms8andvomql' \
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"protocol" : "http",
+//		"url" : "yahoo.com",
+//		"method" : "get",
+//		"successCodes" : [200, 201, 301, 302],
+//		"timeoutSeconds" : 3
+//	}'
 
 // To check token id is valid
 // Test HTTP Server and read token with querystring valid (existing) token id
@@ -101,41 +101,41 @@ module.exports = app;
 // Test HTTP Server on port 3000 with http methods PUT, header none, set routing 'tokens', querystring none and payload valid (existing & not-expired) token id & update fields
 // Postman PUT (http://{{IP_ADDRESS}}:3000/tokens)							// Postman 21-loggingtofiles put tokens
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/tokens' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "id" : "npp5w2xbqan9x3hddz2b",
-//     "extend" : true
-// }'
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"id" : "npp5w2xbqan9x3hddz2b",
+//		"extend" : true
+//	}'
 
 // Test HTTP Server and read check with header valid (existing & not-expired) token id and querystring valid (existing) check id
 // Test HTTP Server on port 3000 with http methods GET, header valid (existing & not-expired) token id, set routing 'checks', querystring valid (existing) check id and payload none
 // Postman GET (http://{{IP_ADDRESS}}:3000/checks?id=7ikuh742lm8tqeapvg0h)	// Postman 21-loggingtofiles get checks
 // curl -X GET 'http://{{IP_ADDRESS}}:3000/checks?id=7ikuh742lm8tqeapvg0h'\
-// --header 'token: npp5w2xbqan9x3hddz2b'
+//	--header 'token: npp5w2xbqan9x3hddz2b'
 
 // Test HTTP Server and update check with header valid (existing & not-expired) token id and payload valid (existing) check id & updated fields
 // Test HTTP Server on port 3000 with http methods PUT, header valid (existing & not-expired) token id, set routing 'checks', querystring none and payload valid (existing) check id & updated fields
 // Postman PUT (http://{{IP_ADDRESS}}:3000/checks)							// Postman 21-loggingtofiles put checks
 // curl -X PUT 'http://{{IP_ADDRESS}}:3000/checks' \
-// --header 'token: qg6il77ga1o04brehwu2' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-//     "id" : "86uodos4izpykyqyvdua",
-//     "protocol" : "https",
-//     "url" : "yahoo.com",
-//     "method" : "put",
-//     "successCodes" : [200, 201, 403],
-//     "timeoutSeconds" : 2
-// }'
+//	--header 'token: qg6il77ga1o04brehwu2' \
+//	--header 'Content-Type: application/json' \
+//	--data-raw '{
+//		"id" : "86uodos4izpykyqyvdua",
+//		"protocol" : "https",
+//		"url" : "yahoo.com",
+//		"method" : "put",
+//		"successCodes" : [200, 201, 403],
+//		"timeoutSeconds" : 2
+//	}'
 
 // Test HTTP Server and delete check with header valid (existing & not-expired) token id and querystring valid (existing) check id
 // Test HTTP Server on port 3000 with http methods DEL, header valid (existing & not-expired) token id, set routing 'checks', querystring valid (existing) check id and payload none
 // Postman DEL (http://{{IP_ADDRESS}}:3000/checks?id=7o784mnf2jpjch7b30ku)	// Postman 21-loggingtofiles del checks
 // curl -X DELETE 'http://{{IP_ADDRESS}}:3000/checks?id=7o784mnf2jpjch7b30ku'\
-// --header 'token: kwztgpxbwv86jvmtanrv'
+//	--header 'token: kwztgpxbwv86jvmtanrv'
 
 // Test HTTP Server and delete user with header valid (existing & not-expired) token id and querystring valid (existing) phone
 // Test HTTP Server on port 3000 with http methods DEL, header valid (existing & not-expired) token id, set routing 'users', querystring valid (existing) phone and payload none
 // Postman DEL (http://{{IP_ADDRESS}}:3000/users?phone=5551234560)			// Postman 21-loggingtofiles del users
 // curl -X DELETE 'http://{{IP_ADDRESS}}:3000/users?phone=5551234560' \
-// --header 'token: q96gn9butftilibcfe07'
+//	--header 'token: q96gn9butftilibcfe07'
