@@ -1,5 +1,6 @@
 // Filename: 05-parsinghttpmethods.js
-// Description: Module 0305 Parsing HTTP Methods
+// Course: Pirple Node JS Master Class
+// Description: Module 0305 Building RESTful API- Parsing HTTP methods
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -21,22 +22,24 @@ const server = http.createServer(function(req, res){
 	let method = req.method.toLowerCase();
 
 	// Send the response
-	res.end("Hello World! 05-parsinghttpmethods.js \n");
-
+	res.end("Hello World! 05-parsinghttpmethods.js \n"+ "Request received on path: " + trimmedPath+ " with method: " + method);
+	
 	// Log the requests
 	console.log("Request received on path:", trimmedPath, "with method:", method);
 });
 
 // Start the server, and have it listen on port 3000
 server.listen(3000, function(){
-	console.log("The server is listening on port 3000 now");
+	console.log("Hello World! 05-parsinghttpmethods.js \n" + "The server is listening on port 3000 now");
 });
 
 // Running command
-// cd ./Apps 03 -- RESTful API
 // node 05-parsinghttpmethods.js
 
-// Test HTTP Server with http methods and routing path
+// Endpoint with HTTP methods & route
+// [POST/GET/PUT/PATCH/DELETE] `http://{{IP_ADDRESS}}:3000/route`
+
+// Test endpoint status with HTTP methods and routing path- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path
 // Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path)		// Postman 05-parsinghttpmethods
 // curl [-X POST/GET/PUT/PATCH/DELETE] http://{{IP_ADDRESS}}:3000/path

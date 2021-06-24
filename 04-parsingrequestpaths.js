@@ -1,5 +1,6 @@
 // Filename: 04-parsingrequestpaths.js
-// Description: Module 0304 Parsing Request Paths
+// Course: Pirple Node JS Master Class
+// Description: Module 0304 Building RESTful API- Parsing request paths
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -18,7 +19,7 @@ const server = http.createServer(function(req, res){
 	let trimmedPath = path.replace(/^\/+|\/+$/g,'');
 
 	// Send the response
-	res.end("Hello World! 04-parsingrequestpaths.js \n");
+	res.end("Hello World! 04-parsingrequestpaths.js \n" + "Request received on path: " + trimmedPath);
 
 	// Log the request path
 	console.log("Request received on path:", trimmedPath);
@@ -26,14 +27,17 @@ const server = http.createServer(function(req, res){
 
 // Start the server, and have it listen on port 3000
 server.listen(3000, function(){
-	console.log("The server is listening on port 3000 now");
+	console.log("Hello World! 04-parsingrequestpaths.js \n" + "The server is listening on port 3000 now");
 });
 
 // Running command
-// cd ./Apps 03 -- RESTful API
 // node 04-parsingrequestpaths.js
 
-// Test HTTP Server with routing path
+// Endpoint with Route
+// GET `http://{{IP_ADDRESS}}:3000/route`
+// GET `http://{{IP_ADDRESS}}:3000/path`
+
+// Test endpoint status with routing path- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path
 // Postman GET (http://{{IP_ADDRESS}}:3000/path)		// Postman 04-parsingrequestpaths
-// curl http://{{IP_ADDRESS}}:3000/path
+// curl [-X GET] `http://{{IP_ADDRESS}}:3000/path`

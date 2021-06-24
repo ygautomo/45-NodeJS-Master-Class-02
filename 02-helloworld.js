@@ -1,5 +1,6 @@
 // Filename: 02-helloworld.js
-// Description: Module 0302 Basic Scaffolding
+// Course: Pirple Node JS Master Class
+// Description: Module 0302 Building RESTful API- Basic scaffolding
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -15,5 +16,4 @@ console.log(`Try to write in multi line
 console.log("Try to write in multi line \n strings");
 
 // Running command
-// cd ./Apps 03 -- RESTful API
 // node 02-helloworld.js
