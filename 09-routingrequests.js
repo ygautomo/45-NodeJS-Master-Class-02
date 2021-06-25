@@ -1,5 +1,6 @@
 // Filename: 09-routingrequests.js
-// Description: Module 0309 Routing Requests
+// Course: Pirple Node JS Master Class
+// Description: Module 0309 Building RESTful API- Routing Requests
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -65,20 +66,25 @@ const server = http.createServer(function(req, res){
 			// Return the response
 			res.writeHead(statusCode);
 			res.end(payloadString);
-			// res.end("Hello World! 09-routingrequests.js \nwith payload:", payloadString);
+			/* res.end("Hello World! 09-routingrequests.js \
+			\n" + "Request received with these headers: " + JSON.stringify(data['headers']) + " \
+			\n" + "Request received with these payloads: " + data['payload'] + " \
+			\n" + "Request received on route: " + data['trimmedPath'] + " with method: " + data['method'] + " and with these querystring paramaters " + JSON.stringify(data['queryStringObject']) + " \
+			\n" + "Request received with handler: " + payloadString); */
+	
 
 			// Log the requests
 			console.log("Returning this response", statusCode, payloadString);
-			console.log("Request received with this payload:", buffer);
-			console.log("Request received with these headers:", headers);
-			console.log("Request received on path:", trimmedPath, "with method:", method, "and with these query string paramaters", queryStringObject);
+			console.log("Request received with these headers:", data['headers']);
+			console.log("Request received with this payload:", data['payload']);
+			console.log("Request received on route:", data['trimmedPath'], "with method:", data['method'], "and with these query string paramaters", data['queryStringObject']);
 		});
 	});
 });
 
 // Start the server, and have it listen on port 3000
 server.listen(3000, function(){
-	console.log("The server is listening on port 3000 now");
+	console.log("Hello World! 09-routingrequests.js \n" + "The server is listening on port 3000 now");
 });
 
 // Define the handlers
@@ -101,21 +107,24 @@ let router = {
 };
 
 // Running command
-// cd ./Apps 03 -- RESTful API
 // node 09-routingrequests.js
 
-// Test HTTP Server with http methods, header, set routing 'path', querystring and payload
+// Endpoint with HTTP method, headers, route handler, querystrings and payloads
+// Headers { foo: 'bar',  fizz: 'buzz',  apple: 'orange',  red: 'blue' }
+// Payloads "This is the body we are sending." 
+// [POST/PUT] `http://{{IP_ADDRESS}}:3000/route?month=March&year=2021`
+
+// Test endpoint status with HTTP method, headers, route ('path', 'route', 'sample'), querystrings and payloads- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
 // Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)			// Postman 09-routingrequests
-// curl [-X POST/GET/PUT/PATCH/DELETE] \
+// curl [-X POST/PUT] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
 //	-d "This is the body we are sending." \
 //	"http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 
-// Test HTTP Server with http methods, header, set routing 'sample', querystring and payload
 // http://{{IP_ADDRESS}}:3000/sample?month=March&year=2021
 // Postman POST (http://{{IP_ADDRESS}}:3000/sample?month=March&year=2021)		// Postman 09-routingrequests
-// curl [-X POST/GET/PUT/PATCH/DELETE] \
+// curl [-X POST/PUT] \
 //	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
 //	-d "This is the body we are sending." \
 //	"{{IP_ADDRESS}}:3000/sample?month=March&year=2021"
@@ -123,3 +132,6 @@ let router = {
 
 // Reff: https://stackoverflow.com/questions/9100099/why-is-curl-truncating-this-query-string
 // Reff: https://stackoverflow.com/questions/56008469/i-am-new-in-programming-i-am-learning-node-js-but-while-doing-parsedurl-i-am-ge
+
+// Note: Sending body/payload in a GET request may cause some existing implementations to reject the request — while not prohibited by the specification, the semantics are undefined. It is better to just avoid sending payloads in GET requests.
+// Reff: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET

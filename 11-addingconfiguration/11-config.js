@@ -1,5 +1,6 @@
-// Filename: config.js
-// Description: Module 0311 Adding Configuration
+// Filename: 11-config.js
+// Course: Pirple Node JS Master Class
+// Description: Module 0311 Building RESTful API- Adding configuration
 // Create and export configuration variables
 //
 // Author: Yugo Gautomo

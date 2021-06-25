@@ -1,5 +1,6 @@
 // Filename: 06-parsingquerystrings.js
-// Description: Module 0306 Parsing Query Strings
+// Course: Pirple Node JS Master Class
+// Description: Module 0306 Building RESTful API- Parsing querystrings
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -24,22 +25,24 @@ const server = http.createServer(function(req, res){
 	let method = req.method.toLowerCase();
 
 	// Send the response
-	res.end("Hello World! 06-parsingquerystrings.js \n");
+	res.end("Hello World! 06-parsingquerystrings.js \n"+ "Request received on route: " + trimmedPath + " with method: " + method + " and with these querystring paramaters " + JSON.stringify(queryStringObject));
 
 	// Log the requests
-	console.log("Request received on path:", trimmedPath, "with method:", method, "and with these query string paramaters", queryStringObject);
+	console.log("Request received on route:", trimmedPath, "with method:", method, "and with these querystring paramaters", queryStringObject);
 });
 
 // Start the server, and have it listen on port 3000
 server.listen(3000, function(){
-	console.log("The server is listening on port 3000 now");
+	console.log("Hello World! 06-parsingquerystrings.js \n" + "The server is listening on port 3000 now");
 });
 
 // Running command
-// cd ./Apps 03 -- RESTful API
 // node 06-parsingquerystrings.js
 
-// Test HTTP Server with http methods, routing path and querystring
+// Endpoint with HTTP method, route and querystrings
+// [POST/GET/PUT/PATCH/DELETE] `http://{{IP_ADDRESS}}:3000/route?month=March&year=2021`
+
+// Test endpoint status with HTTP method, route ('path', 'route') and querystrings- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
 // Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)		// Postman 06-parsingquerystrings
 // curl [-X POST/GET/PUT/PATCH/DELETE] "http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"

@@ -1,5 +1,6 @@
 // Filename: 11-addingconfiguration.js
-// Description: Module 0311 Adding Configuration
+// Course: Pirple Node JS Master Class
+// Description: Module 0311 Building RESTful API- Adding configuration
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -65,20 +66,25 @@ const server = http.createServer(function(req, res){
 			res.setHeader('Content-Type', 'application/json');
 			res.writeHead(statusCode);
 			res.end(payloadString);
-			// res.end("Hello World! 11-addingconfiguration.js \nwith payload:", payloadString);
+			/* res.end("Hello World! 11-addingconfiguration.js \
+			\n" + "Request received with these headers: " + JSON.stringify(data['headers']) + " \
+			\n" + "Request received with these payloads: " + data['payload'] + " \
+			\n" + "Request received on route: " + data['trimmedPath'] + " with method: " + data['method'] + " and with these querystring paramaters " + JSON.stringify(data['queryStringObject']) + " \
+			\n" + "Request received with handler: " + payloadString); */
 
 			// Log the requests
+			console.log("Listening on port", config.port, "in", config.envName);
 			console.log("Returning this response", statusCode, payloadString);
-			console.log("Request received with this payload:", buffer);
-			console.log("Request received with these headers:", headers);
-			console.log("Request received on path:", trimmedPath, "with method:", method, "and with these query string paramaters", queryStringObject);
+			console.log("Request received with these headers:", data['headers']);
+			console.log("Request received with this payload:", data['payload']);
+			console.log("Request received on route:", data['trimmedPath'], "with method:", data['method'], "and with these query string paramaters", data['queryStringObject']);
 		});
 	});
 });
 
 // Start the server, and have it listen on designated port
 server.listen(config.port, function(){
-	console.log("The server is listening on port", config.port, "in", config.envName, "now");
+	console.log("Hello World! 11-addingconfiguration.js \n" + "The server is listening on port", config.port, "in", config.envName, "now");
 });
 
 // Define the handlers
@@ -101,22 +107,26 @@ let router = {
 };
 
 // Running command
-// cd ./Apps 03 -- RESTful API
+// cd ./apps01-restfulapi/11-addingconfiguration
 // NODE_ENV=staging node 11-addingconfiguration.js
 // NODE_ENV=production node 11-addingconfiguration.js
 
-// Test HTTP Server on port 3000 with http methods, header, set routing 'path', querystring and payload
+// Endpoint on port with HTTP method, headers, route handler, querystrings and payloads
+// Headers { foo: 'bar',  fizz: 'buzz',  apple: 'orange',  red: 'blue' }
+// Payloads "This is the body we are sending." 
+// [POST/PUT] `http://{{IP_ADDRESS}}:3000/route?month=March&year=2021`
+
+// Test endpoint status on port (3000, 5000) with HTTP method, headers, route ('path', 'route', 'sample'), querystrings and payloads- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
 // Postman POST (http://{{IP_ADDRESS}}:3000/path?month=March&year=2021)			// Postman 11-addingconfiguration
-// curl [-X POST/GET/PUT/PATCH/DELETE] \
+// curl [-X POST/PUT] \
 //	-H "header:No" -H "foo:bar" -H "fizz:buzz" -H "apple:orange" -H "red:blue" \
 //	-d "This is the body we are sending." \
 //	"http://{{IP_ADDRESS}}:3000/path?month=March&year=2021"
 
-// Test HTTP Server on port 3000 with http methods, header, set routing 'sample', querystring and payload
 // http://{{IP_ADDRESS}}:5000/sample?month=March&year=2021
 // Postman POST (http://{{IP_ADDRESS}}:5000/sample?month=March&year=2021)		// Postman 11-addingconfiguration
-// curl [-X POST/GET/PUT/PATCH/DELETE] \
+// curl [-X POST/PUT] \
 //	--header "header:Yes" --header "foo:bar" --header "fizz:buz" --header "apple:orange" --header "red:blue" \
 //	-d "This is the body we are sending." \
 //	"{{IP_ADDRESS}}:5000/sample?month=March&year=2021"
@@ -124,3 +134,6 @@ let router = {
 
 // Reff: https://stackoverflow.com/questions/9100099/why-is-curl-truncating-this-query-string
 // Reff: https://stackoverflow.com/questions/56008469/i-am-new-in-programming-i-am-learning-node-js-but-while-doing-parsedurl-i-am-ge
+
+// Note: Sending body/payload in a GET request may cause some existing implementations to reject the request — while not prohibited by the specification, the semantics are undefined. It is better to just avoid sending payloads in GET requests.
+// Reff: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET

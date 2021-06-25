@@ -1,5 +1,6 @@
 // Filename: 12-addinghttpssupport.js
-// Description: Module 0312 Adding HTTPS Support
+// Course: Pirple Node JS Master Class
+// Description: Module 0312 Building RESTful API- Adding HTTPS support
 //
 // Author: Yugo Gautomo
 // Status: Final April 01, 2021
@@ -19,7 +20,7 @@ const httpServer = http.createServer(function(req, res){
 
 // Start the HTTP server, and have it listen on designated port
 httpServer.listen(config.httpPort, function(){
-	console.log("The server is listening on port", config.httpPort, "in", config.envName, "now");
+	console.log("Hello World! 12-addinghttpssupport.js \n" + "The server is listening on port", config.port, "in", config.envName, "now");
 });
 
 // Instantiate the HTTPS server
@@ -34,7 +35,7 @@ const httpsServer = https.createServer(httpsServerOptions, function(req, res){
 
 // Start the HTTPS server, and have it listen on designated port
 httpsServer.listen(config.httpsPort, function(){
-	console.log("The server is listening on port", config.httpsPort, "in", config.envName, "now");
+	console.log("Hello World! 12-addinghttpssupport.js \n" + "The server is listening on port", config.port, "in", config.envName, "now");
 });
 
 // All the the server logic for both the http and https createServer
@@ -92,13 +93,18 @@ const unifiedServer = function (req, res){
 			res.setHeader('Content-Type', 'application/json');
 			res.writeHead(statusCode);
 			res.end(payloadString);
-			// res.end("Hello World! 12-addinghttpssupport.js \nwith payload:", payloadString);
+			/* res.end("Hello World! 12-addinghttpssupport.js \
+			\n" + "Request received with these headers: " + JSON.stringify(data['headers']) + " \
+			\n" + "Request received with these payloads: " + data['payload'] + " \
+			\n" + "Request received on route: " + data['trimmedPath'] + " with method: " + data['method'] + " and with these querystring paramaters " + JSON.stringify(data['queryStringObject']) + " \
+			\n" + "Request received with handler: " + payloadString); */
 
 			// Log the requests
+			console.log("Listening on port", config.port, "in", config.envName);
 			console.log("Returning this response", statusCode, payloadString);
-			console.log("Request received with this payload:", buffer);
-			console.log("Request received with these headers:", headers);
-			console.log("Request received on path:", trimmedPath, "with method:", method, "and with these query string paramaters", queryStringObject);
+			console.log("Request received with these headers:", data['headers']);
+			console.log("Request received with this payload:", data['payload']);
+			console.log("Request received on route:", data['trimmedPath'], "with method:", data['method'], "and with these query string paramaters", data['queryStringObject']);
 		});
 	});
 };
@@ -123,9 +129,14 @@ let router = {
 };
 
 // Running command
-// cd ./Apps 03 -- RESTful API
+// cd ./apps01-restfulapi/12-addinghttpssupport
 // NODE_ENV=staging node 12-addinghttpssupport.js
 // NODE_ENV=production node 12-addinghttpssupport.js
+
+// Endpoint on port with HTTP or HTTPS method, headers, route handler, querystrings and payloads
+// Headers { foo: 'bar',  fizz: 'buzz',  apple: 'orange',  red: 'blue' }
+// Payloads "This is the body we are sending." 
+// [POST/PUT] `http://{{IP_ADDRESS}}:3000/route?month=March&year=2021`
 
 // Test HTTP Server on port 3000 with http methods, header, set routing 'path', querystring and payload
 // http://{{IP_ADDRESS}}:3000/path?month=March&year=2021
@@ -161,3 +172,6 @@ let router = {
 
 // Reff: https://stackoverflow.com/questions/9100099/why-is-curl-truncating-this-query-string
 // Reff: https://stackoverflow.com/questions/56008469/i-am-new-in-programming-i-am-learning-node-js-but-while-doing-parsedurl-i-am-ge
+
+// Note: Sending body/payload in a GET request may cause some existing implementations to reject the request — while not prohibited by the specification, the semantics are undefined. It is better to just avoid sending payloads in GET requests.
+// Reff: https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET

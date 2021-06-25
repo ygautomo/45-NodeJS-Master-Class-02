@@ -22,10 +22,10 @@ const server = http.createServer(function(req, res){
 	let method = req.method.toLowerCase();
 
 	// Send the response
-	res.end("Hello World! 05-parsinghttpmethods.js \n"+ "Request received on path: " + trimmedPath+ " with method: " + method);
+	res.end("Hello World! 05-parsinghttpmethods.js \n"+ "Request received on route: " + trimmedPath + " with method: " + method);
 	
 	// Log the requests
-	console.log("Request received on path:", trimmedPath, "with method:", method);
+	console.log("Request received on route:", trimmedPath, "with method:", method);
 });
 
 // Start the server, and have it listen on port 3000
@@ -36,10 +36,10 @@ server.listen(3000, function(){
 // Running command
 // node 05-parsinghttpmethods.js
 
-// Endpoint with HTTP methods & route
+// Endpoint with HTTP method and route
 // [POST/GET/PUT/PATCH/DELETE] `http://{{IP_ADDRESS}}:3000/route`
 
-// Test endpoint status with HTTP methods and routing path- returns the status of the API
+// Test endpoint status with HTTP method and route ('path', 'route')- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path
 // Postman [POST/GET/PUT/PATCH/DELETE] (http://{{IP_ADDRESS}}:3000/path)		// Postman 05-parsinghttpmethods
 // curl [-X POST/GET/PUT/PATCH/DELETE] http://{{IP_ADDRESS}}:3000/path

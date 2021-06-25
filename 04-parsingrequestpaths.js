@@ -19,10 +19,10 @@ const server = http.createServer(function(req, res){
 	let trimmedPath = path.replace(/^\/+|\/+$/g,'');
 
 	// Send the response
-	res.end("Hello World! 04-parsingrequestpaths.js \n" + "Request received on path: " + trimmedPath);
+	res.end("Hello World! 04-parsingrequestpaths.js \n" + "Request received on route: " + trimmedPath);
 
 	// Log the request path
-	console.log("Request received on path:", trimmedPath);
+	console.log("Request received on route:", trimmedPath);
 });
 
 // Start the server, and have it listen on port 3000
@@ -33,11 +33,11 @@ server.listen(3000, function(){
 // Running command
 // node 04-parsingrequestpaths.js
 
-// Endpoint with Route
+// Endpoint with route
 // GET `http://{{IP_ADDRESS}}:3000/route`
 // GET `http://{{IP_ADDRESS}}:3000/path`
 
-// Test endpoint status with routing path- returns the status of the API
+// Test endpoint status with route ('path', 'route')- returns the status of the API
 // http://{{IP_ADDRESS}}:3000/path
 // Postman GET (http://{{IP_ADDRESS}}:3000/path)		// Postman 04-parsingrequestpaths
 // curl [-X GET] `http://{{IP_ADDRESS}}:3000/path`
